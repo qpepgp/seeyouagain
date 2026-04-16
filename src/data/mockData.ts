@@ -1,0 +1,85 @@
+
+import { Meetup } from '../types';
+
+export const MOCK_MEETUPS: Meetup[] = [
+  {
+    id: '1',
+    title: '오늘 오후 서울숲 천천히 산책해요',
+    time: '오후 3:00',
+    place: '서울숲 2번 출입구 앞',
+    category: '산책',
+    description: '서울숲을 천천히 30분 정도 걷고, 원하시면 근처 카페에서 따뜻한 차 한잔 해요. 처음 만나는 자리라 부담 없이 편하게 이야기 나누면 좋겠습니다.',
+    participants: 1,
+    maxParticipants: 2,
+    status: 'seed',
+    seedsRequired: 10,
+    hostName: '따뜻한 햇살',
+    hostAgeGroup: '60대',
+    distance: '0.8km',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: '2',
+    title: '왕십리 카페에서 따뜻한 차 한잔 하실 분',
+    time: '지금 가능',
+    place: '왕십리역 5번 출구 앞 스타벅스',
+    category: '차 한잔',
+    description: '혼자 차 마시기 적적해서 같이 이야기 나누실 분 찾아요. 1시간 정도 소소하게 대화해요.',
+    participants: 2,
+    maxParticipants: 2,
+    status: 'sprout',
+    seedsRequired: 10,
+    hostName: '행복한 나비',
+    hostAgeGroup: '70대',
+    distance: '1.2km',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: '3',
+    title: '성수동에서 저녁 같이 먹어요',
+    time: '저녁 6:00',
+    place: '성수동 할머니의 레시피 식당 앞',
+    category: '식사',
+    description: '맛있는 한식 같이 드실 분! 혼자보다는 둘이 먹는 게 더 맛있으니까요.',
+    participants: 1,
+    maxParticipants: 4,
+    status: 'seed',
+    seedsRequired: 10,
+    hostName: '푸른 숲',
+    hostAgeGroup: '50대',
+    distance: '0.5km',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: '4',
+    title: '뚝섬 한강공원 가볍게 걷기',
+    time: '오후 4:30',
+    place: '뚝섬유원지역 2번 출구 광장',
+    category: '산책',
+    description: '강바람 쐬면서 가볍게 산책하실 분 계신가요? 20분 정도만 걸어도 기분이 좋아져요.',
+    participants: 3,
+    maxParticipants: 3,
+    status: 'sprout',
+    seedsRequired: 10,
+    hostName: '정겨운 이웃',
+    hostAgeGroup: '60대',
+    distance: '2.1km',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: '5',
+    title: '이마트 성수점 장보기 동행',
+    time: '오후 2:00',
+    place: '이마트 성수점 1층 고객만족센터 앞',
+    category: '장보기',
+    description: '혼자 장보기 심심하신 분, 같이 구경하면서 장 봐요. 무거운 거 같이 들어드릴 수도 있어요.',
+    participants: 1,
+    maxParticipants: 2,
+    status: 'seed',
+    seedsRequired: 10,
+    hostName: '지혜로운 샘',
+    hostAgeGroup: '70대',
+    distance: '1.5km',
+    createdAt: new Date().toISOString()
+  }
+];

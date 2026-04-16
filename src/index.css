@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Gowun+Batang:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans KR", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Gowun Batang", serif;
+  
+  --color-primary: #A8E6CF; /* Seed Green */
+  --color-secondary: #FFD3B6; /* Warm Peach */
+  --color-bg-main: #F8F7F2; /* Warm Paper */
+  --color-text-main: #2D3436;
+  --color-text-muted: #636E72;
+  --color-border-main: #E9E4D9;
+  --color-success: #81C784;
+  --color-flower: #FF8B94; /* Flower Pink */
+}
+
+@layer base {
+  body {
+    @apply bg-bg-main text-text-main antialiased;
+    font-size: 18px; /* Larger base font for seniors */
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-serif font-bold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .splash-gradient {
+    background: radial-gradient(circle at 20% 20%, rgba(255, 211, 182, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(168, 230, 207, 0.15) 0%, transparent 40%);
+  }
+  .shadow-soft {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+  }
+  
+  .paper-texture {
+    background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}

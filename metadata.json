@@ -1,0 +1,6 @@
+{
+  "name": "다시봄",
+  "description": "시니어 세대를 위한 따뜻한 감성의 즉흥 모임 플랫폼. 씨앗을 심고 새로운 인연의 꽃을 피워보세요.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": []
+}
