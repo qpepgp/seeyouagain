@@ -4,6 +4,7 @@ import { Button, StatusBadge, Chip, SeedCount } from '../components/UI';
 import { MOCK_MEETUPS } from '../data/mockData';
 import { Meetup, UserProfile } from '../types';
 import { Search, MapPin, Clock, Users, Leaf, Sprout } from 'lucide-react';
+import { motion } from 'motion/react';
 
 interface BrowseScreenProps {
   user?: UserProfile;
@@ -95,42 +96,82 @@ export const BrowseScreen: React.FC<BrowseScreenProps> = ({ user, onSelectMeetup
   );
 };
 
-const MeetupCard: React.FC<{ meetup: Meetup; onClick: () => void }> = ({ meetup, onClick }) => (
-  <div 
-    onClick={onClick}
-    className="bg-white p-5 rounded-[28px] border-2 border-border-main active:scale-[0.98] transition-all shadow-soft relative overflow-hidden"
-  >
-    <div className="flex justify-between items-start mb-4">
-      <StatusBadge status={meetup.status} />
-      <span className="text-sm font-bold text-text-muted">{meetup.distance}</span>
-    </div>
-    
-    <h3 className="text-[20px] font-bold text-text-main mb-4 leading-tight">
-      {meetup.title}
-    </h3>
-    
-    <div className="flex items-center gap-4 text-text-muted mb-4">
-      <div className="flex items-center gap-1.5">
-        <Clock size={16} />
-        <span className="text-sm font-bold">{meetup.time}</span>
-      </div>
-      <div className="flex items-center gap-1.5">
-        <Users size={16} />
-        <span className="text-sm font-bold">{meetup.participants}/{meetup.maxParticipants}명</span>
-      </div>
-    </div>
 
-    <div className="flex items-center justify-between pt-4 border-t border-border-main border-dashed">
-      <div className="flex items-center gap-2">
-        <div className="w-8 h-8 bg-secondary/30 rounded-full flex items-center justify-center text-xs font-bold">
-          {meetup.hostName[0]}
-        </div>
-        <span className="text-sm font-bold text-text-main">{meetup.hostName} · {meetup.hostAgeGroup}</span>
+const MeetupCard: React.FC<{ meetup: Meetup; onClick: () => void }> = ({ meetup, onClick }) => {
+  const createdAt = new Date(meetup.createdAt).getTime();
+  const now = Date.now();
+  const hoursPassed = (now - createdAt) / (1000 * 60 * 60);
+  const hoursRemaining = Math.max(0, 24 - hoursPassed);
+  const sunlightPercentage = (hoursRemaining / 24) * 100;
+  
+  const isExpiringSoon = hoursRemaining < 6;
+  const isCritical = hoursRemaining < 2;
+
+  return (
+    <div 
+      onClick={onClick}
+      className={`bg-white p-5 rounded-[28px] border-2 active:scale-[0.98] transition-all shadow-soft relative overflow-hidden ${
+        isCritical ? 'border-flower/40 bg-flower/5' : 'border-border-main'
+      }`}
+      style={{ 
+        opacity: isCritical ? 0.85 : 1,
+        filter: isExpiringSoon ? `grayscale(${20 - (hoursRemaining * 3)}%)` : 'none'
+      }}
+    >
+      {/* Sunlight Gauge (햇살 게이지) */}
+      <div className="absolute top-0 left-0 right-0 h-1.5 bg-bg-main">
+        <motion.div 
+          initial={{ width: 0 }}
+          animate={{ width: `${sunlightPercentage}%` }}
+          className={`h-full ${isExpiringSoon ? 'bg-flower' : 'bg-primary'}`}
+          transition={{ duration: 1, ease: "easeOut" }}
+        />
       </div>
-      <div className="flex items-center gap-1 text-primary font-bold">
-        <Leaf size={14} />
-        <span className="text-sm">{meetup.seedsRequired}개</span>
+
+      <div className="flex justify-between items-start mb-4 mt-2">
+        <div className="flex items-center gap-2">
+          <StatusBadge status={meetup.status} />
+          {isExpiringSoon && (
+            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${isCritical ? 'bg-flower text-white animate-pulse' : 'bg-flower/20 text-flower'}`}>
+              {isCritical ? '곧 사라져요!' : '햇살이 지고 있어요'}
+            </span>
+          )}
+        </div>
+        <span className="text-sm font-bold text-text-muted">{meetup.distance}</span>
+      </div>
+      
+      <h3 className={`text-[20px] font-bold text-text-main mb-4 leading-tight ${isCritical ? 'text-flower' : ''}`}>
+        {meetup.title}
+      </h3>
+      
+      <div className="flex items-center gap-4 text-text-muted mb-4">
+        <div className="flex items-center gap-1.5">
+          <Clock size={16} />
+          <span className="text-sm font-bold">{meetup.time}</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <Users size={16} />
+          <span className="text-sm font-bold">{meetup.participants}/{meetup.maxParticipants}명</span>
+        </div>
+        <div className="flex items-center gap-1.5 ml-auto">
+          <span className={`text-xs font-bold ${isExpiringSoon ? 'text-flower' : 'text-text-muted'}`}>
+            남은 햇살: {Math.floor(hoursRemaining)}시간
+          </span>
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between pt-4 border-t border-border-main border-dashed">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 bg-secondary/30 rounded-full flex items-center justify-center text-xs font-bold">
+            {meetup.hostName[0]}
+          </div>
+          <span className="text-sm font-bold text-text-main">{meetup.hostName} · {meetup.hostAgeGroup}</span>
+        </div>
+        <div className="flex items-center gap-1 text-primary font-bold">
+          <Leaf size={14} />
+          <span className="text-sm">{meetup.seedsRequired}개</span>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};

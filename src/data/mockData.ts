@@ -16,7 +16,7 @@ export const MOCK_MEETUPS: Meetup[] = [
     hostName: '따뜻한 햇살',
     hostAgeGroup: '60대',
     distance: '0.8km',
-    createdAt: new Date().toISOString()
+    createdAt: new Date(Date.now() - 22 * 60 * 60 * 1000).toISOString() // 22 hours ago (Expiring soon)
   },
   {
     id: '2',
@@ -32,7 +32,7 @@ export const MOCK_MEETUPS: Meetup[] = [
     hostName: '행복한 나비',
     hostAgeGroup: '70대',
     distance: '1.2km',
-    createdAt: new Date().toISOString()
+    createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString() // 2 hours ago (Fresh)
   },
   {
     id: '3',
@@ -48,7 +48,7 @@ export const MOCK_MEETUPS: Meetup[] = [
     hostName: '푸른 숲',
     hostAgeGroup: '50대',
     distance: '0.5km',
-    createdAt: new Date().toISOString()
+    createdAt: new Date(Date.now() - 12 * 60 * 60 * 1000).toISOString() // 12 hours ago (Halfway)
   },
   {
     id: '4',
@@ -64,7 +64,7 @@ export const MOCK_MEETUPS: Meetup[] = [
     hostName: '정겨운 이웃',
     hostAgeGroup: '60대',
     distance: '2.1km',
-    createdAt: new Date().toISOString()
+    createdAt: new Date(Date.now() - 23 * 60 * 60 * 1000).toISOString() // 23 hours ago (Critical)
   },
   {
     id: '5',
@@ -80,6 +80,6 @@ export const MOCK_MEETUPS: Meetup[] = [
     hostName: '지혜로운 샘',
     hostAgeGroup: '70대',
     distance: '1.5km',
-    createdAt: new Date().toISOString()
+    createdAt: new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString() // 5 hours ago (Fresh)
   }
 ];

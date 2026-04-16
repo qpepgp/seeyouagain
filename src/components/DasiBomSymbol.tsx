@@ -8,9 +8,9 @@ interface DasiBomSymbolProps {
 
 export const DasiBomSymbol: React.FC<DasiBomSymbolProps> = ({ size = 'md', showBackground = true }) => {
   const sizeMap = {
-    xs: 32,
-    md: 64,
-    lg: 120,
+    xs: 24,
+    md: 48,
+    lg: 96,
   };
 
   const pixelSize = sizeMap[size];
@@ -18,26 +18,20 @@ export const DasiBomSymbol: React.FC<DasiBomSymbolProps> = ({ size = 'md', showB
   return (
     <div 
       className={`flex items-center justify-center relative ${
-        showBackground ? 'bg-[#FDFBF7] border-2 border-dashed border-[#FFB7C1]/30 shadow-sm' : ''
+        showBackground ? 'bg-[#FFFDF5] border border-dashed border-[#FFB7C1] shadow-sm' : ''
       }`}
       style={{ 
-        width: showBackground ? pixelSize * 1.4 : pixelSize, 
-        height: showBackground ? pixelSize * 1.4 : pixelSize,
-        borderRadius: '40%' // Slightly irregular circle for organic feel
+        width: showBackground ? pixelSize * 1.5 : pixelSize, 
+        height: showBackground ? pixelSize * 1.5 : pixelSize,
+        borderRadius: '50%'
       }}
     >
       {/* Pencil Texture Filter Definition */}
       <svg width="0" height="0" className="absolute">
         <defs>
-          <filter id="pencil-texture" x="-20%" y="-20%" width="140%" height="140%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" />
-          </filter>
-          
-          {/* Rough Edge Filter */}
-          <filter id="rough-edge">
-            <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" result="noise" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" />
+          <filter id="pencil-texture">
+            <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="3" stitchTiles="stitch" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="3"/>
           </filter>
         </defs>
       </svg>
@@ -47,66 +41,68 @@ export const DasiBomSymbol: React.FC<DasiBomSymbolProps> = ({ size = 'md', showB
         width={pixelSize} 
         height={pixelSize} 
         className="filter"
-        style={{ filter: 'url(#pencil-texture) url(#rough-edge)' }}
+        style={{ filter: 'url(#pencil-texture)' }}
       >
-        {/* Sun (해) - Pinkish Pastel */}
+        {/* Sun (해) - Pinkish Pastel #FFB7C1 */}
         <circle 
           cx="50" 
-          cy="30" 
+          cy="35" 
           r="18" 
           fill="#FFB7C1" 
           stroke="#2D3436" 
-          strokeWidth="1.5"
-          strokeDasharray="2 1"
+          strokeWidth="1"
         />
         
-        {/* Sun Rays */}
+        {/* Sun Rays - Hand drawn feel */}
         {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
           <line
             key={angle}
             x1="50"
-            y1="30"
-            x2={50 + 28 * Math.cos((angle * Math.PI) / 180)}
-            y2={30 + 28 * Math.sin((angle * Math.PI) / 180)}
+            y1="35"
+            x2={50 + 26 * Math.cos((angle * Math.PI) / 180)}
+            y2={35 + 26 * Math.sin((angle * Math.PI) / 180)}
             stroke="#FFB7C1"
-            strokeWidth="2"
+            strokeWidth="1.5"
             strokeLinecap="round"
-            opacity="0.6"
           />
         ))}
 
         {/* Sprout Stem (새싹 줄기) */}
         <path 
-          d="M50 48 Q50 65 50 85" 
+          d="M50 53 Q52 70 50 85" 
           stroke="#2D3436" 
-          strokeWidth="2.5" 
+          strokeWidth="2" 
           fill="none" 
           strokeLinecap="round" 
         />
 
-        {/* Two Sprout Leaves / Faces (마주 보고 웃는 얼굴) */}
-        {/* Left Leaf */}
-        <g transform="translate(50, 65) rotate(-20)">
+        {/* Two Sprout Leaves / Faces (마주 보고 웃는 얼굴) #98FB98 */}
+        {/* Left Face */}
+        <g transform="translate(50, 68) rotate(-15)">
           <path 
-            d="M0 0 C-20 -10 -25 15 0 20 Z" 
+            d="M0 0 C-15 -5 -20 15 0 20 Z" 
             fill="#98FB98" 
             stroke="#2D3436" 
-            strokeWidth="1.5" 
+            strokeWidth="1.2" 
           />
+          {/* Eye */}
+          <circle cx="-8" cy="8" r="1" fill="#2D3436" />
           {/* Smile */}
-          <path d="M-12 8 Q-8 12 -4 8" stroke="#2D3436" strokeWidth="1" fill="none" strokeLinecap="round" />
+          <path d="M-10 12 Q-7 15 -4 12" stroke="#2D3436" strokeWidth="0.8" fill="none" strokeLinecap="round" />
         </g>
 
-        {/* Right Leaf */}
-        <g transform="translate(50, 65) rotate(20) scale(-1, 1)">
+        {/* Right Face */}
+        <g transform="translate(50, 68) rotate(15) scale(-1, 1)">
           <path 
-            d="M0 0 C-20 -10 -25 15 0 20 Z" 
+            d="M0 0 C-15 -5 -20 15 0 20 Z" 
             fill="#98FB98" 
             stroke="#2D3436" 
-            strokeWidth="1.5" 
+            strokeWidth="1.2" 
           />
+          {/* Eye */}
+          <circle cx="-8" cy="8" r="1" fill="#2D3436" />
           {/* Smile */}
-          <path d="M-12 8 Q-8 12 -4 8" stroke="#2D3436" strokeWidth="1" fill="none" strokeLinecap="round" />
+          <path d="M-10 12 Q-7 15 -4 12" stroke="#2D3436" strokeWidth="0.8" fill="none" strokeLinecap="round" />
         </g>
       </svg>
     </div>
