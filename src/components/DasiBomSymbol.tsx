@@ -10,7 +10,7 @@ export const DasiBomSymbol: React.FC<DasiBomSymbolProps> = ({ size = 'md', showB
   const sizeMap = {
     xs: 24,
     md: 48,
-    lg: 96,
+    lg: 100,
   };
 
   const pixelSize = sizeMap[size];
@@ -18,20 +18,27 @@ export const DasiBomSymbol: React.FC<DasiBomSymbolProps> = ({ size = 'md', showB
   return (
     <div 
       className={`flex items-center justify-center relative ${
-        showBackground ? 'bg-[#FFFDF5] border border-dashed border-[#FFB7C1] shadow-sm' : ''
+        showBackground ? 'bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#FFB7C1]/20' : ''
       }`}
       style={{ 
-        width: showBackground ? pixelSize * 1.5 : pixelSize, 
-        height: showBackground ? pixelSize * 1.5 : pixelSize,
-        borderRadius: '50%'
+        width: showBackground ? pixelSize * 1.6 : pixelSize, 
+        height: showBackground ? pixelSize * 1.6 : pixelSize,
+        borderRadius: '38%' // Soft, rounded square/circle hybrid
       }}
     >
-      {/* Pencil Texture Filter Definition */}
+      {/* Soft Glow Filter */}
       <svg width="0" height="0" className="absolute">
         <defs>
-          <filter id="pencil-texture">
-            <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="3" stitchTiles="stitch" result="noise"/>
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="3"/>
+          <filter id="soft-glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+          
+          {/* Subtle Paper Texture */}
+          <filter id="subtle-texture">
+            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" result="noise" />
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0" />
+            <feComposite operator="in" in2="SourceGraphic" />
           </filter>
         </defs>
       </svg>
@@ -40,70 +47,65 @@ export const DasiBomSymbol: React.FC<DasiBomSymbolProps> = ({ size = 'md', showB
         viewBox="0 0 100 100" 
         width={pixelSize} 
         height={pixelSize} 
-        className="filter"
-        style={{ filter: 'url(#pencil-texture)' }}
+        className="drop-shadow-sm"
       >
-        {/* Sun (해) - Pinkish Pastel #FFB7C1 */}
+        {/* Warm Sun - Softened edges and warmer pink */}
         <circle 
           cx="50" 
-          cy="35" 
-          r="18" 
+          cy="32" 
+          r="16" 
           fill="#FFB7C1" 
-          stroke="#2D3436" 
-          strokeWidth="1"
+          opacity="0.9"
         />
         
-        {/* Sun Rays - Hand drawn feel */}
+        {/* Soft Sun Rays - Rounded and thicker for comfort */}
         {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
           <line
             key={angle}
             x1="50"
-            y1="35"
-            x2={50 + 26 * Math.cos((angle * Math.PI) / 180)}
-            y2={35 + 26 * Math.sin((angle * Math.PI) / 180)}
+            y1="32"
+            x2={50 + 24 * Math.cos((angle * Math.PI) / 180)}
+            y2={32 + 24 * Math.sin((angle * Math.PI) / 180)}
             stroke="#FFB7C1"
-            strokeWidth="1.5"
+            strokeWidth="3"
             strokeLinecap="round"
+            opacity="0.5"
           />
         ))}
 
-        {/* Sprout Stem (새싹 줄기) */}
+        {/* Sprout Stem - Smooth, elegant curve */}
         <path 
-          d="M50 53 Q52 70 50 85" 
-          stroke="#2D3436" 
-          strokeWidth="2" 
+          d="M50 50 C 50 65, 52 75, 50 88" 
+          stroke="#4A4A4A" 
+          strokeWidth="2.5" 
           fill="none" 
           strokeLinecap="round" 
         />
 
-        {/* Two Sprout Leaves / Faces (마주 보고 웃는 얼굴) #98FB98 */}
+        {/* Two Sprout Leaves / Faces - Simplified, rounded, and friendly */}
         {/* Left Face */}
-        <g transform="translate(50, 68) rotate(-15)">
-          <path 
-            d="M0 0 C-15 -5 -20 15 0 20 Z" 
-            fill="#98FB98" 
-            stroke="#2D3436" 
-            strokeWidth="1.2" 
-          />
-          {/* Eye */}
-          <circle cx="-8" cy="8" r="1" fill="#2D3436" />
-          {/* Smile */}
-          <path d="M-10 12 Q-7 15 -4 12" stroke="#2D3436" strokeWidth="0.8" fill="none" strokeLinecap="round" />
-        </g>
+        <path 
+          d="M50 65 C 35 60, 25 75, 50 82" 
+          fill="#98FB98" 
+          stroke="#4A4A4A" 
+          strokeWidth="1.5" 
+          strokeLinejoin="round"
+        />
+        {/* Eye & Smile (Left) */}
+        <circle cx="40" cy="71" r="1.2" fill="#4A4A4A" />
+        <path d="M37 75 Q 40 78, 43 75" stroke="#4A4A4A" strokeWidth="1" fill="none" strokeLinecap="round" />
 
         {/* Right Face */}
-        <g transform="translate(50, 68) rotate(15) scale(-1, 1)">
-          <path 
-            d="M0 0 C-15 -5 -20 15 0 20 Z" 
-            fill="#98FB98" 
-            stroke="#2D3436" 
-            strokeWidth="1.2" 
-          />
-          {/* Eye */}
-          <circle cx="-8" cy="8" r="1" fill="#2D3436" />
-          {/* Smile */}
-          <path d="M-10 12 Q-7 15 -4 12" stroke="#2D3436" strokeWidth="0.8" fill="none" strokeLinecap="round" />
-        </g>
+        <path 
+          d="M50 65 C 65 60, 75 75, 50 82" 
+          fill="#98FB98" 
+          stroke="#4A4A4A" 
+          strokeWidth="1.5" 
+          strokeLinejoin="round"
+        />
+        {/* Eye & Smile (Right) */}
+        <circle cx="60" cy="71" r="1.2" fill="#4A4A4A" />
+        <path d="M57 75 Q 60 78, 63 75" stroke="#4A4A4A" strokeWidth="1" fill="none" strokeLinecap="round" />
       </svg>
     </div>
   );
