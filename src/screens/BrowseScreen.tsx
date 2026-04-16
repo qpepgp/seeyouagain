@@ -3,17 +3,18 @@ import React from 'react';
 import { Button, StatusBadge, Chip, SeedCount } from '../components/UI';
 import { MOCK_MEETUPS } from '../data/mockData';
 import { Meetup, UserProfile } from '../types';
-import { Search, MapPin, Clock, Users, Leaf, Sprout } from 'lucide-react';
+import { Search, MapPin, Clock, Users, Leaf, Sprout, Heart } from 'lucide-react';
 import { motion } from 'motion/react';
 
 interface BrowseScreenProps {
   user?: UserProfile;
   onSelectMeetup: (id: string) => void;
   onVerify: () => void;
+  onStartSwipe: () => void;
   onCreate: () => void;
 }
 
-export const BrowseScreen: React.FC<BrowseScreenProps> = ({ user, onSelectMeetup, onVerify, onCreate }) => {
+export const BrowseScreen: React.FC<BrowseScreenProps> = ({ user, onSelectMeetup, onVerify, onStartSwipe, onCreate }) => {
   const [filter, setFilter] = React.useState('전체');
   const categories = ['전체', '산책', '차 한잔', '식사', '지금 가능'];
 
@@ -50,6 +51,27 @@ export const BrowseScreen: React.FC<BrowseScreenProps> = ({ user, onSelectMeetup
         </div>
       </header>
 
+      {/* Swipe Mode Banner */}
+      <div className="px-6 pt-6">
+        <button 
+          onClick={onStartSwipe}
+          className="w-full bg-primary/10 border-2 border-primary/20 p-5 rounded-[32px] flex items-center justify-between group active:scale-[0.98] transition-all"
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center text-white shadow-soft group-hover:rotate-12 transition-transform">
+              <Heart size={28} fill="currentColor" />
+            </div>
+            <div className="text-left">
+              <p className="text-lg font-bold text-text-main font-serif">하나씩 골라보기</p>
+              <p className="text-xs font-bold text-primary">마음에 드는 모임을 찜해보세요</p>
+            </div>
+          </div>
+          <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center border border-primary/20 text-primary">
+            →
+          </div>
+        </button>
+      </div>
+
       <div className="p-4 overflow-x-auto flex gap-2 no-scrollbar">
         {categories.map(cat => (
           <Chip 
@@ -61,28 +83,52 @@ export const BrowseScreen: React.FC<BrowseScreenProps> = ({ user, onSelectMeetup
         ))}
       </div>
 
-      <main className="flex-1 p-4 space-y-6 pb-32">
+      <main className="flex-1 space-y-8 pb-32 pt-4 overflow-hidden">
+        {/* 곧 피어날 새싹 모임 (Sprout) */}
         <div className="space-y-4">
-          <h2 className="text-xl font-bold text-text-main flex items-center gap-2 px-2">
-            <Sprout size={24} className="text-success" />
-            곧 피어날 새싹 모임
-          </h2>
-          <div className="grid gap-4">
+          <div className="px-6 flex justify-between items-end">
+            <h2 className="text-xl font-bold text-text-main flex items-center gap-2">
+              <Sprout size={24} className="text-success" />
+              곧 피어날 새싹 모임
+            </h2>
+            <span className="text-xs font-bold text-text-muted">옆으로 넘겨보세요</span>
+          </div>
+          
+          <div className="flex overflow-x-auto gap-4 px-6 pb-4 snap-x snap-mandatory no-scrollbar">
             {filteredMeetups.filter(m => m.status === 'sprout').map(meetup => (
-              <MeetupCard key={meetup.id} meetup={meetup} onClick={() => onSelectMeetup(meetup.id)} />
+              <div key={meetup.id} className="min-w-[85%] sm:min-w-[320px] snap-center">
+                <MeetupCard meetup={meetup} onClick={() => onSelectMeetup(meetup.id)} />
+              </div>
             ))}
+            {filteredMeetups.filter(m => m.status === 'sprout').length === 0 && (
+              <div className="w-full py-12 text-center text-text-muted font-medium bg-white/50 rounded-[28px] border-2 border-dashed border-border-main mx-6">
+                해당하는 모임이 아직 없어요.
+              </div>
+            )}
           </div>
         </div>
 
+        {/* 심을 준비된 씨앗 모임 (Seed) */}
         <div className="space-y-4">
-          <h2 className="text-xl font-bold text-text-main flex items-center gap-2 px-2">
-            <Leaf size={24} className="text-primary" />
-            심을 준비된 씨앗 모임
-          </h2>
-          <div className="grid gap-4">
+          <div className="px-6 flex justify-between items-end">
+            <h2 className="text-xl font-bold text-text-main flex items-center gap-2">
+              <Leaf size={24} className="text-primary" />
+              심을 준비된 씨앗 모임
+            </h2>
+            <span className="text-xs font-bold text-text-muted">옆으로 넘겨보세요</span>
+          </div>
+          
+          <div className="flex overflow-x-auto gap-4 px-6 pb-4 snap-x snap-mandatory no-scrollbar">
             {filteredMeetups.filter(m => m.status === 'seed').map(meetup => (
-              <MeetupCard key={meetup.id} meetup={meetup} onClick={() => onSelectMeetup(meetup.id)} />
+              <div key={meetup.id} className="min-w-[85%] sm:min-w-[320px] snap-center">
+                <MeetupCard meetup={meetup} onClick={() => onSelectMeetup(meetup.id)} />
+              </div>
             ))}
+            {filteredMeetups.filter(m => m.status === 'seed').length === 0 && (
+              <div className="w-full py-12 text-center text-text-muted font-medium bg-white/50 rounded-[28px] border-2 border-dashed border-border-main mx-6">
+                해당하는 모임이 아직 없어요.
+              </div>
+            )}
           </div>
         </div>
       </main>

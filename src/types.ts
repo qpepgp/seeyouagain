@@ -24,6 +24,8 @@ export type Screen =
   | 'LANDING' 
   | 'ONBOARDING'
   | 'BROWSE' 
+  | 'SWIPE'
+  | 'MATCH_LIST'
   | 'DETAIL' 
   | 'PRE_JOIN' 
   | 'VERIFY_NEIGHBORHOOD' 
@@ -46,4 +48,5 @@ export interface AppState {
   userNeighborhood?: string;
   joinRequestSent: boolean;
   confirmedMeetupId?: string;
+  interestedMeetupIds: string[];
 }

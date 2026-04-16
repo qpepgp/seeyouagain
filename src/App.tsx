@@ -4,6 +4,8 @@ import { MOCK_MEETUPS } from './data/mockData';
 import { LandingScreen } from './screens/LandingScreen';
 import { OnboardingScreen } from './screens/OnboardingScreen';
 import { BrowseScreen } from './screens/BrowseScreen';
+import { SwipeScreen } from './screens/SwipeScreen';
+import { MatchListScreen } from './screens/MatchListScreen';
 import { DetailScreen } from './screens/DetailScreen';
 import { 
   PreJoinScreen, 
@@ -17,6 +19,7 @@ export default function App() {
   const [state, setState] = React.useState<AppState>({
     currentScreen: 'LANDING',
     joinRequestSent: false,
+    interestedMeetupIds: [],
   });
 
   const navigate = (screen: Screen, extra: Partial<AppState> = {}) => {
@@ -54,6 +57,7 @@ export default function App() {
             user={state.user}
             onSelectMeetup={(id) => navigate('DETAIL', { selectedMeetupId: id })}
             onVerify={() => navigate('VERIFY_NEIGHBORHOOD')}
+            onStartSwipe={() => navigate('SWIPE')}
             onCreate={() => {
               if (state.user?.isNeighborhoodVerified) {
                 navigate('CREATE');
@@ -61,6 +65,23 @@ export default function App() {
                 navigate('PRE_JOIN');
               }
             }}
+          />
+        );
+      case 'SWIPE':
+        return (
+          <SwipeScreen 
+            user={state.user}
+            onBack={() => navigate('BROWSE')}
+            onFinish={(ids) => navigate('MATCH_LIST', { interestedMeetupIds: ids })}
+          />
+        );
+      case 'MATCH_LIST':
+        return (
+          <MatchListScreen 
+            user={state.user}
+            interestedIds={state.interestedMeetupIds}
+            onBack={() => navigate('BROWSE')}
+            onSelectMeetup={(id) => navigate('DETAIL', { selectedMeetupId: id })}
           />
         );
       case 'DETAIL':
