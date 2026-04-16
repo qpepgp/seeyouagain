@@ -51,28 +51,57 @@ export const BrowseScreen: React.FC<BrowseScreenProps> = ({ user, onSelectMeetup
         </div>
       </header>
 
-      {/* Swipe Mode Banner */}
+      {/* Main Discovery Section: Swipe Mode */}
       <div className="px-6 pt-6">
+        <div className="mb-4">
+          <h2 className="text-xl font-bold text-text-main font-serif">오늘의 인연 찾기</h2>
+          <p className="text-sm text-text-muted">나와 잘 맞는 모임을 하나씩 살펴보세요</p>
+        </div>
+        
         <button 
           onClick={onStartSwipe}
-          className="w-full bg-primary/10 border-2 border-primary/20 p-5 rounded-[32px] flex items-center justify-between group active:scale-[0.98] transition-all"
+          className="w-full bg-white border-2 border-primary/30 p-8 rounded-[40px] flex flex-col items-center justify-center gap-6 group active:scale-[0.98] transition-all shadow-soft relative overflow-hidden"
         >
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center text-white shadow-soft group-hover:rotate-12 transition-transform">
-              <Heart size={28} fill="currentColor" />
-            </div>
-            <div className="text-left">
-              <p className="text-lg font-bold text-text-main font-serif">하나씩 골라보기</p>
-              <p className="text-xs font-bold text-primary">마음에 드는 모임을 찜해보세요</p>
+          {/* Decorative background elements */}
+          <div className="absolute -top-10 -right-10 w-32 h-32 bg-primary/5 rounded-full blur-2xl" />
+          <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-secondary/10 rounded-full blur-2xl" />
+
+          <div className="w-24 h-24 bg-primary rounded-[32px] flex items-center justify-center text-white shadow-xl group-hover:rotate-6 transition-transform relative z-10">
+            <Heart size={48} fill="currentColor" className="animate-pulse" />
+          </div>
+          
+          <div className="text-center relative z-10">
+            <p className="text-2xl font-bold text-text-main font-serif mb-2">하나씩 골라보기</p>
+            <div className="flex items-center justify-center gap-2 text-primary font-bold">
+              <span>지금 바로 시작하기</span>
+              <span className="text-xl">→</span>
             </div>
           </div>
-          <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center border border-primary/20 text-primary">
-            →
+
+          <div className="flex -space-x-3 mt-2">
+            {[1, 2, 3, 4].map(i => (
+              <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-bg-main flex items-center justify-center text-xs font-bold text-text-muted shadow-sm">
+                {['김', '이', '박', '최'][i-1]}
+              </div>
+            ))}
+            <div className="w-10 h-10 rounded-full border-2 border-white bg-primary/10 flex items-center justify-center text-[10px] font-bold text-primary shadow-sm">
+              +26
+            </div>
           </div>
         </button>
       </div>
 
-      <div className="p-4 overflow-x-auto flex gap-2 no-scrollbar">
+      <div className="px-6 pt-10">
+        <div className="flex items-center justify-between mb-2">
+          <h2 className="text-lg font-bold text-text-main font-serif">전체 모임 둘러보기</h2>
+          <div className="flex items-center gap-1 text-text-muted">
+            <Search size={16} />
+            <span className="text-xs font-bold">검색</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="p-4 overflow-x-auto flex gap-2 no-scrollbar px-6">
         {categories.map(cat => (
           <Chip 
             key={cat} 

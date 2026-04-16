@@ -16,7 +16,7 @@ export const MOCK_MEETUPS: Meetup[] = [
     hostName: '따뜻한 햇살',
     hostAgeGroup: '60대',
     distance: '0.8km',
-    createdAt: new Date(Date.now() - 22 * 60 * 60 * 1000).toISOString() // 22 hours ago (Expiring soon)
+    createdAt: new Date(Date.now() - 22 * 60 * 60 * 1000).toISOString()
   },
   {
     id: '2',
@@ -32,7 +32,7 @@ export const MOCK_MEETUPS: Meetup[] = [
     hostName: '행복한 나비',
     hostAgeGroup: '70대',
     distance: '1.2km',
-    createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString() // 2 hours ago (Fresh)
+    createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString()
   },
   {
     id: '3',
@@ -48,7 +48,7 @@ export const MOCK_MEETUPS: Meetup[] = [
     hostName: '푸른 숲',
     hostAgeGroup: '50대',
     distance: '0.5km',
-    createdAt: new Date(Date.now() - 12 * 60 * 60 * 1000).toISOString() // 12 hours ago (Halfway)
+    createdAt: new Date(Date.now() - 12 * 60 * 60 * 1000).toISOString()
   },
   {
     id: '4',
@@ -64,7 +64,7 @@ export const MOCK_MEETUPS: Meetup[] = [
     hostName: '정겨운 이웃',
     hostAgeGroup: '60대',
     distance: '2.1km',
-    createdAt: new Date(Date.now() - 23 * 60 * 60 * 1000).toISOString() // 23 hours ago (Critical)
+    createdAt: new Date(Date.now() - 23 * 60 * 60 * 1000).toISOString()
   },
   {
     id: '5',
@@ -80,6 +80,106 @@ export const MOCK_MEETUPS: Meetup[] = [
     hostName: '지혜로운 샘',
     hostAgeGroup: '70대',
     distance: '1.5km',
-    createdAt: new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString() // 5 hours ago (Fresh)
-  }
+    createdAt: new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString()
+  },
+  {
+    id: '6',
+    title: '응봉산 팔각정 야경 산책',
+    time: '저녁 7:30',
+    place: '응봉역 1번 출구',
+    category: '산책',
+    description: '야경이 예쁜 응봉산 같이 올라가요. 계단이 조금 있지만 천천히 가면 괜찮아요.',
+    participants: 2,
+    maxParticipants: 3,
+    status: 'seed',
+    seedsRequired: 10,
+    hostName: '별헤는 밤',
+    hostAgeGroup: '50대',
+    distance: '1.8km',
+    createdAt: new Date(Date.now() - 8 * 60 * 60 * 1000).toISOString()
+  },
+  {
+    id: '7',
+    title: '성수 도서관에서 같이 책 읽어요',
+    time: '오전 10:30',
+    place: '성수도서관 2층 열람실 앞',
+    category: '차 한잔',
+    description: '각자 읽을 책 가져와서 1시간 정도 집중해서 읽고, 잠깐 차 마시며 이야기 나눠요.',
+    participants: 1,
+    maxParticipants: 2,
+    status: 'seed',
+    seedsRequired: 10,
+    hostName: '책벌레',
+    hostAgeGroup: '60대',
+    distance: '0.3km',
+    createdAt: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString()
+  },
+  {
+    id: '8',
+    title: '중랑천 둑길 장미 구경',
+    time: '오후 2:00',
+    place: '중랑천 둑길 입구',
+    category: '산책',
+    description: '장미가 예쁘게 피었네요. 같이 꽃구경하며 사진도 찍어드려요.',
+    participants: 1,
+    maxParticipants: 2,
+    status: 'seed',
+    seedsRequired: 10,
+    hostName: '꽃사랑',
+    hostAgeGroup: '70대',
+    distance: '2.5km',
+    createdAt: new Date(Date.now() - 15 * 60 * 60 * 1000).toISOString()
+  },
+  {
+    id: '9',
+    title: '성수동 핫플레이스 카페 탐방',
+    time: '오후 4:00',
+    place: '성수역 3번 출구',
+    category: '차 한잔',
+    description: '요즘 젊은 친구들이 많이 가는 예쁜 카페 같이 가보실 분? 용기 내어 가봐요!',
+    participants: 2,
+    maxParticipants: 4,
+    status: 'seed',
+    seedsRequired: 10,
+    hostName: '청춘예찬',
+    hostAgeGroup: '50대',
+    distance: '0.7km',
+    createdAt: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString()
+  },
+  {
+    id: '10',
+    title: '동네 시장 맛집 칼국수 번개',
+    time: '지금 가능',
+    place: '성수시장 입구',
+    category: '식사',
+    description: '비도 오고 칼국수가 생각나네요. 시장 안 맛집 같이 가요.',
+    participants: 1,
+    maxParticipants: 2,
+    status: 'sprout',
+    seedsRequired: 10,
+    hostName: '면사랑',
+    hostAgeGroup: '60대',
+    distance: '0.4km',
+    createdAt: new Date(Date.now() - 0.5 * 60 * 60 * 1000).toISOString()
+  },
+  { id: '11', title: '남산 둘레길 걷기', time: '오전 9:00', place: '남산도서관 앞', category: '산책', description: '공기 좋은 남산 둘레길 같이 걸어요.', participants: 2, maxParticipants: 5, status: 'seed', seedsRequired: 10, hostName: '건강제일', hostAgeGroup: '60대', distance: '4.2km', createdAt: new Date().toISOString() },
+  { id: '12', title: '바둑 한 판 두실 분', time: '오후 2:00', place: '성수동 경로당 앞 공원', category: '차 한잔', description: '실력 상관없이 즐겁게 바둑 두실 분 찾습니다.', participants: 1, maxParticipants: 2, status: 'seed', seedsRequired: 10, hostName: '신선', hostAgeGroup: '70대', distance: '0.6km', createdAt: new Date().toISOString() },
+  { id: '13', title: '뜨개질 같이 배워요', time: '오후 3:00', place: '성수동 문화센터 1층 카페', category: '차 한잔', description: '초보자 환영! 같이 뜨개질하며 수다 떨어요.', participants: 3, maxParticipants: 4, status: 'sprout', seedsRequired: 10, hostName: '솜씨쟁이', hostAgeGroup: '60대', distance: '0.9km', createdAt: new Date().toISOString() },
+  { id: '14', title: '동네 한바퀴 자전거 타기', time: '오후 5:00', place: '살곶이 다리 입구', category: '산책', description: '자전거 타고 시원하게 달려봐요.', participants: 1, maxParticipants: 3, status: 'seed', seedsRequired: 10, hostName: '바람돌이', hostAgeGroup: '50대', distance: '1.1km', createdAt: new Date().toISOString() },
+  { id: '15', title: '삼겹살 파티원 모집', time: '저녁 7:00', place: '성수역 근처 고깃집', category: '식사', description: '고기는 같이 먹어야 제맛이죠!', participants: 2, maxParticipants: 4, status: 'seed', seedsRequired: 10, hostName: '고기대장', hostAgeGroup: '50대', distance: '0.8km', createdAt: new Date().toISOString() },
+  { id: '16', title: '아침 체조 같이 해요', time: '오전 7:00', place: '성수공원 중앙광장', category: '산책', description: '활기찬 아침을 위해 같이 운동해요.', participants: 5, maxParticipants: 10, status: 'sprout', seedsRequired: 10, hostName: '부지런', hostAgeGroup: '60대', distance: '0.4km', createdAt: new Date().toISOString() },
+  { id: '17', title: '스마트폰 사용법 서로 알려주기', time: '오후 1:00', place: '성수동 주민센터 카페', category: '차 한잔', description: '어려운 스마트폰 기능, 서로 도와가며 배워요.', participants: 1, maxParticipants: 3, status: 'seed', seedsRequired: 10, hostName: '배움의 기쁨', hostAgeGroup: '70대', distance: '0.5km', createdAt: new Date().toISOString() },
+  { id: '18', title: '한강변 노을 감상', time: '저녁 6:30', place: '성수구름다리 위', category: '산책', description: '아름다운 노을 같이 보며 힐링해요.', participants: 1, maxParticipants: 2, status: 'seed', seedsRequired: 10, hostName: '감성소녀', hostAgeGroup: '60대', distance: '1.3km', createdAt: new Date().toISOString() },
+  { id: '19', title: '옛날 노래 부르기 모임', time: '오후 4:00', place: '성수동 코인노래방', category: '차 한잔', description: '추억의 노래 같이 부르며 스트레스 풀어요.', participants: 2, maxParticipants: 3, status: 'seed', seedsRequired: 10, hostName: '가수왕', hostAgeGroup: '50대', distance: '0.7km', createdAt: new Date().toISOString() },
+  { id: '20', title: '주말 농장 구경 가기', time: '오전 11:00', place: '성동구청 앞 셔틀버스 정류장', category: '산책', description: '싱싱한 채소들 구경하러 가요.', participants: 1, maxParticipants: 4, status: 'seed', seedsRequired: 10, hostName: '농부의 마음', hostAgeGroup: '60대', distance: '2.0km', createdAt: new Date().toISOString() },
+  { id: '21', title: '동네 빵집 투어', time: '오후 2:30', place: '성수역 1번 출구', category: '차 한잔', description: '맛있는 빵집 같이 돌아다녀요.', participants: 2, maxParticipants: 3, status: 'sprout', seedsRequired: 10, hostName: '빵순이', hostAgeGroup: '50대', distance: '0.6km', createdAt: new Date().toISOString() },
+  { id: '22', title: '등산 장비 정보 공유', time: '오후 3:00', place: '성수동 등산용품점 앞', category: '차 한잔', description: '좋은 등산 장비 추천해주고 정보 나눠요.', participants: 1, maxParticipants: 2, status: 'seed', seedsRequired: 10, hostName: '산신령', hostAgeGroup: '60대', distance: '0.9km', createdAt: new Date().toISOString() },
+  { id: '23', title: '동네 사진 찍기 출사', time: '오전 10:00', place: '성수동 벽화거리 입구', category: '산책', description: '예쁜 골목길 사진 찍으러 다녀요.', participants: 2, maxParticipants: 4, status: 'seed', seedsRequired: 10, hostName: '찰칵', hostAgeGroup: '50대', distance: '0.5km', createdAt: new Date().toISOString() },
+  { id: '24', title: '반려견 산책 친구 구함', time: '오후 4:00', place: '성수공원 강아지 놀이터', category: '산책', description: '강아지랑 같이 산책하며 친구 만들어요.', participants: 1, maxParticipants: 2, status: 'seed', seedsRequired: 10, hostName: '멍멍이', hostAgeGroup: '60대', distance: '0.3km', createdAt: new Date().toISOString() },
+  { id: '25', title: '수채화 그리기 모임', time: '오후 2:00', place: '성수동 화실 카페', category: '차 한잔', description: '그림 그리며 마음의 평화를 찾아요.', participants: 3, maxParticipants: 5, status: 'sprout', seedsRequired: 10, hostName: '화가', hostAgeGroup: '70대', distance: '1.2km', createdAt: new Date().toISOString() },
+  { id: '26', title: '동네 역사 탐방', time: '오후 1:00', place: '성동구 역사박물관 앞', category: '산책', description: '우리 동네의 역사를 같이 알아봐요.', participants: 1, maxParticipants: 3, status: 'seed', seedsRequired: 10, hostName: '역사학자', hostAgeGroup: '60대', distance: '1.5km', createdAt: new Date().toISOString() },
+  { id: '27', title: '전통차 마시기', time: '오후 3:30', place: '성수동 전통찻집', category: '차 한잔', description: '따뜻한 쌍화차 한잔하며 건강 챙겨요.', participants: 2, maxParticipants: 2, status: 'sprout', seedsRequired: 10, hostName: '다도', hostAgeGroup: '70대', distance: '0.4km', createdAt: new Date().toISOString() },
+  { id: '28', title: '동네 맛집 지도 만들기', time: '오후 5:00', place: '성수역 근처 카페', category: '차 한잔', description: '우리가 아는 맛집들 정리해서 지도 만들어요.', participants: 1, maxParticipants: 4, status: 'seed', seedsRequired: 10, hostName: '미식가', hostAgeGroup: '50대', distance: '0.8km', createdAt: new Date().toISOString() },
+  { id: '29', title: '가을 낙엽 밟기 산책', time: '오후 3:00', place: '서울숲 은행나무길', category: '산책', description: '낙엽 밟는 소리 들으며 가을을 느껴요.', participants: 2, maxParticipants: 3, status: 'seed', seedsRequired: 10, hostName: '가을남자', hostAgeGroup: '60대', distance: '1.0km', createdAt: new Date().toISOString() },
+  { id: '30', title: '연말 모임 계획하기', time: '저녁 6:00', place: '성수동 파티룸', category: '차 한잔', description: '즐거운 연말을 위해 미리 계획 세워요.', participants: 1, maxParticipants: 6, status: 'seed', seedsRequired: 10, hostName: '파티플래너', hostAgeGroup: '50대', distance: '1.1km', createdAt: new Date().toISOString() }
 ];
